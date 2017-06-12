@@ -45,9 +45,7 @@ else:
 levelTwoFileName = 'levelTwo.dat'
 numRecordAtATime = 14
 secondsBetweenQuery = 15*60.0
-# blockNum = 0
-time.sleep(secondsBetweenQuery)
-blockNum = 2
+blockNum = 0
 # levelTwoFollowers = []
 
 cursors = [-1]*len(following)
