@@ -81,7 +81,7 @@ conn.commit()
 numCurRec = 1490
 secondsBetweenQuery = 15*60.0
 blockNum = 0
-start=600
+start=3000
 
 
 
@@ -107,6 +107,8 @@ for i in range(start, len(uLevelTwoIDs)):
                 user_screen_name = rec[0]['user']['screen_name'].encode('utf-8').replace("'", "").replace('"', '')
                 user_description = rec[0]['user']['description'].encode('utf-8').replace("'", "").replace('"', '')
                 user_lang =  1 if rec[0]['user']['lang'] == 'en' else 0
+                if user_lang == 0: # Only want English tweeters
+                    break
                 
                 c.execute("UPDATE {tn} SET {cn2}=('{v2}'), {cn3}=({v3}), {cn4}=('{v4}') WHERE {idc}=({id})".format(tn=t1, cn2=t1f2, cn3=t1f3, cn4=t1f4, v2=user_screen_name, v3=user_lang, v4=user_description,idc=t1f1, id=int(user_id)))
                 
