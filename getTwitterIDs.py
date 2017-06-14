@@ -45,7 +45,9 @@ else:
 levelTwoFileName = 'levelTwo.dat'
 numRecordAtATime = 14
 secondsBetweenQuery = 15*60.0
-blockNum = 0
+# blockNum = 0
+# time.sleep(secondsBetweenQuery)
+# blockNum = 8
 # levelTwoFollowers = []
 
 cursors = [-1]*len(following)
@@ -60,17 +62,21 @@ else:
         print('Starting Block {0}'.format(str(blockNum)))
         starttime = time.time()
         for i in range(numRecordAtATime*blockNum, min(numRecordAtATime*(blockNum+1), len(following))):
-            followersIDs = client.request('https://api.twitter.com/1.1/followers/ids.json?cursor='+ str(cursors[i]) + '&user_id='+ str(following[i]) + '&count=5000')
-            
-            friendsIDs = client.request('https://api.twitter.com/1.1/friends/ids.json?cursor='+ str(cursors[i]) + '&user_id='+ str(following[i]) + '&count=5000')
-            
-            # # There is more data to read - This would add 50 hours for someone with 1 million followers. Not a good approach
-            # if not dataIDs['next_cursor'] == 0:
-                # following.append(i)
-                # cursors.append(dataIDs['next_cursor'])
+            try:
+                followersIDs = client.request('https://api.twitter.com/1.1/followers/ids.json?cursor='+ str(cursors[i]) + '&user_id='+ str(following[i]) + '&count=5000')
                 
-            levelTwoFollowers.append(followersIDs['ids'])
-            levelTwoFollowers.append(friendsIDs['ids'])
+                friendsIDs = client.request('https://api.twitter.com/1.1/friends/ids.json?cursor='+ str(cursors[i]) + '&user_id='+ str(following[i]) + '&count=5000')
+                
+                # # There is more data to read - This would add 50 hours for someone with 1 million followers. Not a good approach
+                # if not dataIDs['next_cursor'] == 0:
+                    # following.append(i)
+                    # cursors.append(dataIDs['next_cursor'])
+                    
+                levelTwoFollowers.append(followersIDs['ids'])
+                levelTwoFollowers.append(friendsIDs['ids'])
+            except:
+                print('Error searching blockNum: {0} corresponding to id: {1} and cursor {2}\n'.format(str(blockNum), str(following[i]), str(cursors[i])))
+                pass
         
         with open('block_' + str(blockNum) + '.dat', 'w') as fout:
             fout.write(str(levelTwoFollowers))
@@ -83,4 +89,3 @@ else:
         
         print('Waiting {0} seconds.'.format(str(secondsBetweenQuery - (time.time() - starttime))))
         time.sleep(secondsBetweenQuery - (time.time() - starttime) + 60.0) # The extra 60 seconds is a buffer
-    
