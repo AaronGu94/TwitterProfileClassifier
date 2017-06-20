@@ -2,7 +2,8 @@
 
 import sqlite3
 import numpy as np
-
+import pandas as pd
+import matplotlib.pyplot as plt
 
 
 # Read in categories and keywords
@@ -27,13 +28,32 @@ c = conn.cursor()
 
 x = c.execute("SELECT userId, desc FROM user_table WHERE screenName != ' ' ")
 
-userIds = []
-catVects = []
+catVects = {}
 
 for rec in x:
     indicatorVector = [0]*len(categories)
     for cat in range(len(categories)):
         if any(word in rec[1].lower()  for word in keywords[categories[cat]]):
             indicatorVector[cat] = 1
-    userIds.append(rec[0])
-    catVects.append(indicatorVector)
+    catVects[rec[0]] = indicatorVector
+    
+numWithData = 0
+for key in catVects.keys():
+    if 1 in catVects[key]:
+        numWithData += 1
+print("There are {0} users that are classified to some category.".format(numWithData))
+
+
+# Construct padas DataFrame from the data
+df = pd.DataFrame.from_dict(catVects, orient='index', columns=categories) # The orient parameter uses dict keys as row labels
+df.columns = categories # Rename the columns
+
+
+
+# Plot categories vs. number of users
+# df.sum() # See how many users we have for each category
+# np.mean(df.sum()) # get average number of users per category
+plt.bar(range(len(categories)), list(df.sum()), color='blue')
+plt.xticks(range(len(categories)), categories, rotation='vertical')
+plt.tight_layout()
+# plt.show()
