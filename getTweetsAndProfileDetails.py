@@ -81,7 +81,7 @@ conn.commit()
 numCurRec = 1490
 secondsBetweenQuery = 15*60.0
 blockNum = 0
-start=3000
+start=217200 # Start at zero for new run
 
 
 
@@ -93,11 +93,11 @@ for i in range(start, len(uLevelTwoIDs)):
     if i % 700 == 0:
         time.sleep(100.0)
     try:
-        tweetData = client.request('https://api.twitter.com/1.1/statuses/user_timeline.json?user_id={id}&count={cnt}'.format(id=str(uLevelTwoIDs[i]), cnt=100))
+        tweetData = client.request('https://api.twitter.com/1.1/statuses/user_timeline.json?user_id={id}&count={cnt}'.format(id=str(uLevelTwoIDs[i]).replace("L",""), cnt=100))
         
         currentRecords.append(tweetData)
-    except:
-        print('Error searching id: {id}'.format(id=str(uLevelTwoIDs[i])))
+    except Exception as e:
+        print('Error when searching id: {id}'.format(id=str(uLevelTwoIDs[i])))
 
     if len(currentRecords) % 100 == 0:
         for rec in currentRecords:
@@ -126,6 +126,7 @@ for i in range(start, len(uLevelTwoIDs)):
                     c.execute("INSERT INTO {tn}  ({c1}, {c2}, {c3}, {c4})  VALUES ({v1}, {v2}, '{v3}', {v4})".format(tn=t2, c1=t2f1, c2=t2f2, c3=t2f3, c4=t2f4, v1=tweet_id, v2=user_id, v3=tweet_text,v4=tweet_lang))
                 conn.commit()
         currentRecords = []
+        print("Resetting currentRecords")
 
 
     # print('Waiting {0} seconds.'.format(str(secondsBetweenQuery - (time.time() - starttime))))
