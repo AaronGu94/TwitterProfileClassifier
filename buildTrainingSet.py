@@ -32,10 +32,13 @@ catVects = {}
 
 for rec in x:
     indicatorVector = [0]*len(categories)
+    flag = 0
     for cat in range(len(categories)):
         if any(word in rec[1].lower()  for word in keywords[categories[cat]]):
             indicatorVector[cat] = 1
-    catVects[rec[0]] = indicatorVector
+            flag = 1
+    if flag == 1: # Only add entries matching some category to the dictionary
+        catVects[str(rec[0])] = indicatorVector
     
 numWithData = 0
 for key in catVects.keys():
@@ -45,10 +48,10 @@ print("There are {0} users that are classified to some category.".format(numWith
 
 
 # Construct padas DataFrame from the data
-df = pd.DataFrame.from_dict(catVects, orient='index', columns=categories) # The orient parameter uses dict keys as row labels
+df = pd.DataFrame.from_dict(catVects, orient='index') # The orient parameter uses dict keys as row labels
 df.columns = categories # Rename the columns
 
-
+df.to_pickle('categorizedData.dat')
 
 # Plot categories vs. number of users
 # df.sum() # See how many users we have for each category
