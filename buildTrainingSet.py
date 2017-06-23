@@ -60,3 +60,39 @@ plt.bar(range(len(categories)), list(df.sum()), color='blue')
 plt.xticks(range(len(categories)), categories, rotation='vertical')
 plt.tight_layout()
 # plt.show()
+
+
+# df.sum() Results
+"""
+Advice                  315
+Animals                 965
+Art and Design         1695
+Books                   674
+Business               2032
+Celebrity                30
+Comics                  219
+DIY and Crafts          307
+Education              1440
+Electronics            1602
+Fashion                 312
+Food & Drink           1692
+Funny                   191
+Gaming                  871
+Health                  458
+Jobs                    137
+Military                728
+Movies                  236
+Music                   902
+News                    643
+Philosophy              297
+Photography             452
+Politics                991
+Religion                303
+Science                1714
+Security                173
+Sports                 1544
+Technology             2077
+Television              926
+Travel and Outdoors     679
+Vehicles                811
+"""
