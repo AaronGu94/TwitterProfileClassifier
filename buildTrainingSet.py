@@ -35,7 +35,7 @@ for rec in x:
     flag = 0
     for cat in range(len(categories)):
         if any(word in rec[1].lower()  for word in keywords[categories[cat]]):
-            indicatorVector[cat] = 1
+            indicatorVector[cat] = sum([word in rec[1].lower()  for word in keywords[categories[cat]]])
             flag = 1
     if flag == 1: # Only add entries matching some category to the dictionary
         catVects[str(rec[0])] = indicatorVector
@@ -45,7 +45,6 @@ for key in catVects.keys():
     if 1 in catVects[key]:
         numWithData += 1
 print("There are {0} users that are classified to some category.".format(numWithData))
-
 
 # Construct padas DataFrame from the data
 df = pd.DataFrame.from_dict(catVects, orient='index') # The orient parameter uses dict keys as row labels

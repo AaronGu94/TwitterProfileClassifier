@@ -39,7 +39,7 @@ else:
     with open(levelOneFileName, 'wb') as fout:
         pickle.dump(following, fout)
 
-'''
+
 # Level 2 - Get a list of those following my followers
 # https://dev.twitter.com/rest/reference/get/followers/ids
 levelTwoFileName = 'levelTwo.dat'
@@ -89,4 +89,3 @@ else:
         
         print('Waiting {0} seconds.'.format(str(secondsBetweenQuery - (time.time() - starttime))))
         time.sleep(secondsBetweenQuery - (time.time() - starttime) + 60.0) # The extra 60 seconds is a buffer
-'''

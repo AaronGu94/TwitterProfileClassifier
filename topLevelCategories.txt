@@ -12,10 +12,9 @@ Animals
 -bird
 -birds
 -fish
--life
 -nature
 Art and Design
--art
+-artist
 -design
 -designing
 -painting
@@ -79,8 +78,8 @@ Comics
 -hulk
 -ironman
 -joker
--lex
--luthor
+-villian
+-hero
 DIY and Crafts
 -DIY
 -craft
@@ -110,8 +109,6 @@ Electronics
 -electronics
 -electricity
 -arduino
--raspberry
--pi
 Fashion
 -fashion
 -dress
@@ -125,16 +122,12 @@ Fashion
 -pants
 -shoes
 -style
--mens
--womens
 Food & Drink
 -food
 -foods
 -taste
 -taster
 -tasty
--eat
--eats
 -dine
 -dines
 -foodie
@@ -189,7 +182,6 @@ Jobs
 -jobs
 -careers
 -resume
--cv
 Military
 -military
 -army
@@ -198,7 +190,6 @@ Military
 -marine
 -marines
 -conflict
--war
 -combat
 -force
 -forces
@@ -213,7 +204,7 @@ Music
 -musicians
 -instrument
 -instrumental
--sing
+-singer
 -singing
 -melody
 -album
@@ -253,14 +244,12 @@ Politics
 -conservative
 -president
 -NDP
--cons
 -libs
 -senate
 -congress
 -governor
 -senator
 -laws
--law
 -govern
 -government
 Religion
@@ -310,7 +299,6 @@ Science
 -experiment
 -experiments
 -evolution
--lab
 -laboratory
 -medicine
 -geology
@@ -362,7 +350,6 @@ Sports
 -boxing
 -wrestling
 -compete
--fan
 Technology
 -gadget
 -device
@@ -391,7 +378,6 @@ Television
 -television
 -tv
 -web
--internet
 -network
 -show
 -season
@@ -412,17 +398,14 @@ Travel and Outdoors
 Vehicles
 -vehicle
 -vehicles
--car
--cars
 -plane
 -planes
 -airplane
 -airplanes
 -boat
 -boats
--ship
--ships
 -speed
 -vintage
 -transport
 -transportation
+-auto
