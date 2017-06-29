@@ -112,9 +112,9 @@ testData = df2[~mask]
 
 # Code based off of this: https://rstudio-pubs-static.s3.amazonaws.com/79360_850b2a69980c4488b1db95987a24867a.html
 
-numTopics  50
+numTopics = 50
 
-if os.path.isfile('tweet.lda'):
+if os.path.isfile('tdweet.lda'):
     ldamodel = models.ldamodel.LdaModel.load('tweet.lda')
 else:
     dictionary = corpora.Dictionary([i.split() for i in trainData[2]])
@@ -123,7 +123,7 @@ else:
 
     ldamodel.save('tweet.lda')
 
-y = ldamodel[[dictionary.doc2bow(text.split() for text in testData[2]]]
+y = ldamodel[[dictionary.doc2bow(text.split() for text in testData[2])]]
 
 # Add new columns to the dataframe
 for i in range(numTopics):

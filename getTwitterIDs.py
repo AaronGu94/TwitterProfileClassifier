@@ -8,8 +8,9 @@ import pickle
 
 '''
 see: https://dev.twitter.com/oauth/application-only
-Obtain a copy of twitter-application-only-auth here: https://pypi.python.org/pypi/twitter-application-only-auth/0.3.1 
-(credit" Pablo Seminario, Rafael Reimberg and Chris Hawkins)
+Obtain a copy of twitter-application-only-auth here:
+https://pypi.python.org/pypi/twitter-application-only-auth/0.3.1 
+(credit: Pablo Seminario, Rafael Reimberg and Chris Hawkins)
 '''
 
 # Get the key and the secret. Saved in a seperate file for security reasons.

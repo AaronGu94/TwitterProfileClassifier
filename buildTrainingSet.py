@@ -55,7 +55,7 @@ df.to_pickle('categorizedData.dat')
 # Plot categories vs. number of users
 # df.sum() # See how many users we have for each category
 # np.mean(df.sum()) # get average number of users per category
-plt.bar(range(len(categories)), list(df.sum()), color='blue')
+plt.bar(range(len(categories)), list(df.sum()), color='blue', alpha=0.5)
 plt.xticks(range(len(categories)), categories, rotation='vertical')
 plt.tight_layout()
 # plt.show()

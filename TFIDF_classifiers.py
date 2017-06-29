@@ -85,7 +85,7 @@ if os.path.isfile('tokenizedNounsAndVerbs.dat'):
     print("Pickled File Exists")
     df2 = pd.read_pickle('tokenizedNounsAndVerbs.dat')
 else:
-    tknzr =TweetTokenizer()
+    tknzr = TweetTokenizer()
 
     count = 0
     for index, row in df.iterrows():
@@ -110,6 +110,7 @@ else:
         
     df2 = pd.DataFrame(my_df)
     df2.to_pickle('tokenizedNounsAndVerbs.dat')
+
 
 # Partitioning DataFrame into Training and Testing datasets
 mask = np.random.rand(len(df2)) < 0.8 # Test set made from ~ 80% of the data
@@ -171,8 +172,9 @@ predicted2 = clf2.predict(testing_tfidf)
 
 print("Random Forest: {0}% were found to have been predicted correctly".format(100.0*np.mean(testData[1] == predicted2)))
 print("Random Forest: {0}% were found to have been predicted correctly (for any category)".format(100.0*checkAccuracyAllCats(predicted2, df, testData)))
-# With n_estimators = 10 (default), I got better performance by 5% than I did with multinomial naive bayes. With my number correct over ALL possible categories, this is scoring 28.9% !
+"""
+With n_estimators = 10 (default), I got better performance by 5% than I did with multinomial naive bayes. With my number correct over ALL possible categories, this is scoring 28.9% !
 # Got 34.5% with 30 estimators
 # Got 34.7% with 50 estimators
 # Got 37.1% with 100 estimators
-# 
+"""
